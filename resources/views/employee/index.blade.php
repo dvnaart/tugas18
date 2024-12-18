@@ -47,7 +47,7 @@
         </div>
         <hr>
         <div class="table-responsive border p-3 rounded-3">
-            <table class="table table-bordered table-hover table-striped mb-0 bg-white">
+            <table class="table table-bordered table-hover table-striped mb-0 bg-white" id="employeeTable">
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -72,6 +72,13 @@
                 </tbody>
             </table>
         </div>
+        @push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+@endpush
     </div>
     @endsection
 
