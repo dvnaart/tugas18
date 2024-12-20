@@ -6,7 +6,8 @@ use App\Models\Position;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\DB;
+use PDF;  // Pastikan sudah mengimpor PDF
+
 
 class EmployeeController extends Controller
 {
@@ -57,8 +58,9 @@ class EmployeeController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         // ELOQUENT
-        $employee = New Employee;
+        $employee = new Employee;
         $employee->firstname = $request->firstName;
         $employee->lastname = $request->lastName;
         $employee->email = $request->email;
@@ -136,5 +138,19 @@ class EmployeeController extends Controller
         Employee::find($id)->delete();
 
         return redirect()->route('employees.index');
+    }
+
+    /**
+     * Export employee data to PDF
+     */
+    public function exportPdf()
+    {
+        $employees = Employee::all();
+
+        // Generate the PDF
+        $pdf = PDF::loadView('employee.export_pdf', compact('employees'));
+
+        // Return the PDF file as a download
+        return $pdf->download('employees.pdf');
     }
 }
