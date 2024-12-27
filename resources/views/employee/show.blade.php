@@ -52,7 +52,7 @@
                         <h5>{{ $employee->lastname }}</h5>
                     </div>
                     <div class="col-md-12 mb-3">
-                        <label for="email" class="form-label">Email</label>
+                        <label for="email" class="form-label">E-mail</label>
                         <h5>{{ $employee->email }}</h5>
                     </div>
                     <div class="col-md-12 mb-3">
