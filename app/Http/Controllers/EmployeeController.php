@@ -7,6 +7,8 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\EmployeesExport;
 
 class EmployeeController extends Controller
 {
@@ -136,5 +138,10 @@ class EmployeeController extends Controller
         Employee::find($id)->delete();
 
         return redirect()->route('employees.index');
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new EmployeesExport, 'employees.xlsx');
     }
 }
