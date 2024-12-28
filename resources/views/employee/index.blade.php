@@ -47,6 +47,11 @@
                                 <i class="bi bi-download me-1"></i> to Excel
                             </a>
                         </li>
+                        <li class="list-inline-item">
+                            <a href="{{ route('employees.exportPdf') }}" class="btn btn-outline-danger">
+                                <i class="bi bi-download me-1"></i> to PDF
+                            </a>
+                        </li>
                         <li class="list-inline-item">|</li>
                         <li class="list-inline-item">
                             <a href="{{ route('employees.create') }}" class="btn btn-primary">
@@ -108,34 +113,30 @@
                             [10, 25, 50, 100, -1],
                             [10, 25, 50, 100, "All"],
                         ],
-
                     });
                     $(".datatable").on("click", ".btn-delete", function (e) {
-                e.preventDefault();
+                        e.preventDefault();
 
-                var form = $(this).closest("form");
-                var name = $(this).data("name");
+                        var form = $(this).closest("form");
+                        var name = $(this).data("name");
 
-                Swal.fire({
-                    title: "Are you sure want to delete\n" + name + "?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonClass: "bg-primary",
-                    confirmButtonText: "Yes, delete it!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        form.submit();
-                    }
+                        Swal.fire({
+                            title: "Are you sure want to delete\n" + name + "?",
+                            text: "You won't be able to revert this!",
+                            icon: "warning",
+                            showCancelButton: true,
+                            confirmButtonClass: "bg-primary",
+                            confirmButtonText: "Yes, delete it!",
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                form.submit();
+                            }
+                        });
+                    });
                 });
-            });
-        });
-    </script>
-@endpush
-
+            </script>
+            @endpush
         </div>
-
-
     @endsection
 
     @vite('resources/js/app.js')

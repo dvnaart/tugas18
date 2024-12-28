@@ -31,3 +31,8 @@ Route::get('getEmployees', [EmployeeController::class, 'getData'])->name('employ
 
 
 Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
+
+
+Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');
+
+
